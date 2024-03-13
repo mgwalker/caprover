@@ -5,7 +5,7 @@ const fs = require('fs-extra');
 
 const pathOfPublic = path.join(__dirname, '..', `public`);
 
-const pathOfDist = path.join(__dirname, '..', `dist`);
+const pathOfDist = path.join(__dirname, '..', `docs`);
 
 const pathOfDistV2 = path.join(pathOfDist, 'v2');
 const pathOfDistV3 = path.join(pathOfDist, 'v3');
@@ -178,9 +178,6 @@ function buildDist() {
             fs.outputJsonSync(path.join(pathOfDistV2, 'list'), v3List);
             fs.outputJsonSync(path.join(pathOfDistV3, 'list'), v3List);
             fs.outputJsonSync(path.join(pathOfDistV4, 'list'), v3List);
-        })
-        .then(function () {
-            return fs.copySync(path.join(pathOfPublic, 'CNAME'), path.join(pathOfDist, 'CNAME'));
         });
 }
 
