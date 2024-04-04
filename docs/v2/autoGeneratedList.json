@@ -1,1 +1,1 @@
-{"appList":["toot"],"appDetails":[{"name":"toot","displayName":"Mastodon","description":"Social networking, back in your hands.","isOfficial":true,"logoUrl":"toot.png"}]}
+{"appList":["send","toot"],"appDetails":[{"name":"send","displayName":"Send","description":"Sharing stuff securely.","isOfficial":false,"logoUrl":"send.png"},{"name":"toot","displayName":"Mastodon","description":"Social networking, back in your hands.","isOfficial":true,"logoUrl":"toot.png"}]}
