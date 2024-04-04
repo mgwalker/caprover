@@ -10,7 +10,7 @@ services:
         volumes:
             - $$cap_appname-storage:/uploads
         caproverExtra:
-            containerHttpPort: '3000'
+            containerHttpPort: '1443'
             dockerfileLines:
                 - FROM registry.gitlab.com/timvisee/send:latest
     # Redis
