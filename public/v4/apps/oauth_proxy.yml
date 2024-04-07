@@ -3,10 +3,11 @@ services:
     # OAuth proxy
     $$cap_appname:
         environment:
-            BASE_URL: $$cap_appname.$$cap_root_domain
-            GITHUB_TOKEN: $$cap_github_token
-            GITHUB_USERS: $$cap_github_users
-            UPSTREAMS: $$cap_upstreams
+            OAUTH2_PROXY_GITHUB_USERS: $$cap_github_users
+            OAUTH2_PROXY_UPSTREAMS: $$cap_upstreams
+            OAUTH2_PROXY_CLIENT_ID: $$cap_client_id
+            OAUTH2_PROXY_CLIENT_SECRET: $$cap_client_secret
+            OAUTH2_PROXY_EMAIL_DOMAIN: $$cap_email_domain
         volumes:
             - $$cap_appname-storage:/uploads
         caproverExtra:
@@ -19,13 +20,21 @@ caproverOneClickApp:
           label: GitHub users
           description: List of GitHub usernames that are allowed access, separated by commas
           validRegex: /^.*$/
-        - id: $$cap_github_tokens
-          label: GitHub OAuth Token
-          description: Provided by GitHub
-          validRegex: /^.*$/
         - id: $$cap_upstreams
           label: Upstreams
           description: List of upstreams. These are the URLs that are protected by authentication. See https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview#upstreams-configuration
+          validRegex: /^.*$/
+        - id: $$cap_client_id
+          label: OAuth client ID
+          description: Provided by GitHub
+          validRegex: /^.*$/
+        - id: $$cap_client_secret
+          label: OAuth client secret
+          description: Provided by GitHub
+          validRegex: /^.*$/
+        - id: $$cap_email_domain
+          label: Email address to authorize. Use * as a wildcard.
+          defaultValue: "*"
           validRegex: /^.*$/
 
     instructions:
