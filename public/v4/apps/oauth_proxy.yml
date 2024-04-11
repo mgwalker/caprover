@@ -7,7 +7,7 @@ services:
             OAUTH2_PROXY_UPSTREAMS: $$cap_upstreams
             OAUTH2_PROXY_CLIENT_ID: $$cap_client_id
             OAUTH2_PROXY_CLIENT_SECRET: $$cap_client_secret
-            OAUTH2_PROXY_EMAIL_DOMAIN: $$cap_email_domain
+            OAUTH2_PROXY_EMAIL_DOMAINS: $$cap_email_domain
             OAUTH2_PROXY_COOKIE_SECRET: $$cap_cookie_secret
             OAUTH2_PROXY_PROVIDER: github
             OAUTH2_PROXY_HTTP_ADDRESS: http://:4180
@@ -43,7 +43,7 @@ caproverOneClickApp:
           validRegex: /^.*$/
         - id: $$cap_cookie_secret
           label: The seed string for secure cookies
-          defaultValue: $$cap_gen_random_hex(64)
+          defaultValue: $$cap_gen_random_hex(32)
           validRegex: /^.*$/
         - id: $$cap_skip_routes
           label: Regex of routes to skip authentication, separated by commas
