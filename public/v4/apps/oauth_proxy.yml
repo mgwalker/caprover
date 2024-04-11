@@ -8,6 +8,11 @@ services:
             OAUTH2_PROXY_CLIENT_ID: $$cap_client_id
             OAUTH2_PROXY_CLIENT_SECRET: $$cap_client_secret
             OAUTH2_PROXY_EMAIL_DOMAIN: $$cap_email_domain
+            OAUTH2_PROXY_COOKIE_SECRET: $$cap_cookie_secret
+            OAUTH2_PROXY_PROVIDER: github
+            OAUTH2_PROXY_HTTP_ADDRESS: http://:4180
+            OAUTH2_PROXY_REVERSE_PROXY: true
+            OAUTH2_PROXY_SKIP_AUTH_ROUTES: $$cap_skip_routes
         volumes:
             - $$cap_appname-storage:/uploads
         caproverExtra:
@@ -33,9 +38,16 @@ caproverOneClickApp:
           description: Provided by GitHub
           validRegex: /^.*$/
         - id: $$cap_email_domain
-          label: Email address to authorize. Use * as a wildcard.
+          label: Email addresses to authorize. Use * as a wildcard.
           defaultValue: "*"
           validRegex: /^.*$/
+        - id: $$cap_cookie_secret
+          label: The seed string for secure cookies
+          defaultValue: $$cap_gen_random_hex(64)
+          validRegex: /^.*$/
+        - id: $$cap_skip_routes
+          label: Regex of routes to skip authentication, separated by commas
+          defaultValue: ''
 
     instructions:
         start: OAuth2 Proxy
